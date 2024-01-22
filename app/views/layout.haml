@@ -1,0 +1,11 @@
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{ content: 'Blue' }
+    %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
+    %link{ href: '/style.css', rel: 'stylesheet' }
+    %link{ href: '/pico_classless.min.css', rel: 'stylesheet' }
+  %body
+    %header
+      %h1 The title
+    %main
+      != yield

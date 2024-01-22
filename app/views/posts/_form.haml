@@ -1,0 +1,11 @@
+.form-group
+  %label{ for: 'title' } Title
+  %input{ id: 'title', name: 'post[title]', type: 'text', value: post.title ? post.title : '' }
+
+.form-group
+  %label{ for: 'title' } Content
+  %textarea{ id: 'title', name: 'post[content]' }
+    =post.content ? post.content : ''
+
+.form-group
+  %input{ type: 'submit' }

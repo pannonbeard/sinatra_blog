@@ -1,0 +1,4 @@
+%h2 Edit Post
+
+%form{ action: "/posts/#{@post.id}", method: 'post' }
+  !=render :haml, :'posts/_form', locals: { post: @post }
