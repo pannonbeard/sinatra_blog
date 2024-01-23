@@ -19,6 +19,7 @@ GEM
       rack (>= 3.0.0, < 4)
     rack-session (2.0.0)
       rack (>= 3.0.0)
+    rake (13.1.0)
     ruby2_keywords (0.0.5)
     sequel (5.76.0)
       bigdecimal
@@ -44,6 +45,7 @@ PLATFORMS
 DEPENDENCIES
   haml (~> 6.3)
   puma (~> 6.4)
+  rake
   sequel (~> 5.76)
   sinatra (~> 4.0)
   sinatra-contrib
