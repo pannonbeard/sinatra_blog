@@ -1,6 +1,6 @@
-class CreatePosts
-  def change
-    DB.create_table :posts do
+Sequel.migration do
+  change do
+    create_table :posts do
       primary_key :id
       String :title
       Text :content

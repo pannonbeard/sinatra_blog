@@ -1,30 +1,18 @@
 namespace :app do
-  desc "migrate non migrated files"
-  task :migrate do
-    require './config/db'
-    Dir[File.join('db', 'migrations', '*.rb')].each do |file|
-      require File.expand_path(file)
-
-      migration = Kernel.const_get(File.basename(file, '.rb').split('_').collect(&:capitalize).join)
-
-      next unless DB[:migrations].where(migration_name: migration.to_s).count == 0
-
-      migration.new.change
-
-      puts migration
-      DB[:migrations].insert({ migration_name: migration.to_s })
+  namespace :db do
+    desc "Run migrations"
+    task :migrate, [:version] do |t, args|
+      require "sequel/core"
+      Sequel.extension :migration
+      version = args[:version].to_i if args[:version]
+      Sequel.connect('sqlite://db/blog.sqlite') do |db|
+        Sequel::Migrator.run(db, "db/migrations", target: version)
+      end
     end
-  end
 
-
-  desc "sets up initial db"
-  task :db_setup do
-    require './config/db'
-    require './db/migrations/migration_setup'
-
-    MigrationSetup.new.create
-
-    puts 'Set up db'
-    DB[:migrations].insert({ migration_name: 'MigrationSetup' })
+    desc "Drop Databases"
+    task :drop do
+      File.delete('./db/blog.sqlite')
+    end
   end
 end
