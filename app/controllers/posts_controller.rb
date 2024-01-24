@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.first(params[:id])
+    @post = Post.first(id: params[:id])
     @post.destroy
 
     redirect '/posts'

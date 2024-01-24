@@ -5,8 +5,6 @@ Dir['./app/controllers/*_controller.rb'].each do |file|
   controller = "#{file_base.capitalize}Controller"
   next if controller == 'ApplicationController' 
 
-  puts "required #{file_base}"
-  puts "registered /#{file_base.gsub('_controller', '')}"
   map("/#{file_base.gsub('_controller', '')}"){ run Kernel.const_get(controller) }
 end
 
