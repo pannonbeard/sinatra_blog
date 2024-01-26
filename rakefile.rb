@@ -5,9 +5,9 @@ namespace :app do
   DATABASE = 'db/blog.sqlite'
 
   namespace :db do
-    desc "Run migrations"
+    desc 'Run migrations'
     task :migrate, [:version] do |t, args|
-      require "sequel/core"
+      require 'sequel/core'
       Sequel.extension :migration
       version = args[:version].to_i if args[:version]
       Sequel.connect("sqlite://#{DATABASE}") do |db|
@@ -15,14 +15,14 @@ namespace :app do
       end
     end
 
-    desc "Drop Databases"
+    desc 'Drop Databases'
     task :drop do
       File.delete("./#{DATABASE}")
     end
   end
 
   namespace :generate do
-    desc "generates Migration file with appropriate version"
+    desc 'generates Migration file with appropriate version'
     # rake db:generate_migration[my_migration_name]
     task :migration, :name do |_, args|
       args.with_defaults(name: 'migration')

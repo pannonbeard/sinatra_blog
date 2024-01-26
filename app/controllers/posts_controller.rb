@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller For Posts
 class PostsController < ApplicationController
   def index
     @posts = Post.all
@@ -23,10 +26,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.first(id: params[:id])
-
-    if @post
-      @post.update(params[:post])
-    end
+    @post.update(params[:post])
 
     redirect "/posts/#{@post.id}"
   end

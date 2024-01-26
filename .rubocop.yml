@@ -1,0 +1,9 @@
+require:
+  - rubocop-sequel
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'rakefile.rb'
+    - 'db/**/*.rb'

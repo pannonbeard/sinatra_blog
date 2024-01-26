@@ -1,13 +1,13 @@
-require 'rubygems'
-require 'sinatra'
-require "sinatra/base"
-require 'sinatra/reloader'
+# frozen_string_literal: true
 
+# Application controller
 class ApplicationController < Sinatra::Base
-  set :views, ['app/views']
-  set :haml, :format => :html5
+  helpers ApplicationHelper
 
-  set :public_folder, File.expand_path('../../../public', __FILE__)
+  set :views, ['app/views']
+  set :haml, format: :html5
+
+  set :public_folder, File.expand_path('../../../public', __dir__)
 
   configure :production, :development do
     register Sinatra::Reloader
@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 
   def root_path
-    return '' if self.class.name == 'ApplicationController'
+    return '' if self.class.instance_of?(ApplicationController)
 
     self.class.name.downcase.gsub('controller', '')
   end
@@ -28,15 +28,15 @@ class ApplicationController < Sinatra::Base
   get '/' do
     index
 
-    haml "#{root_path}/index".to_sym
+    haml :"#{root_path}/index"
   end
 
   def index; end
 
   get '/new' do
     new
-  
-    haml "#{root_path}/new".to_sym
+
+    haml :"#{root_path}/new"
   end
 
   def new; end
@@ -50,7 +50,7 @@ class ApplicationController < Sinatra::Base
   get '/:id' do
     show
 
-    haml "#{root_path}/show".to_sym
+    haml :"#{root_path}/show"
   end
 
   def show; end
@@ -58,7 +58,7 @@ class ApplicationController < Sinatra::Base
   get '/:id/edit' do
     edit
 
-    haml "#{root_path}/edit".to_sym
+    haml :"#{root_path}/edit"
   end
 
   def edit; end
@@ -74,4 +74,4 @@ class ApplicationController < Sinatra::Base
   end
 
   def destroy; end
-end 
+end
