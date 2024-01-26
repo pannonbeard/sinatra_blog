@@ -1,17 +1,19 @@
+# frozen_string_literal: true
+
 require 'fileutils'
 
-namespace :app do
-  MIGRATIONS_DIR = 'db/migrations'
-  DATABASE = 'db/blog.sqlite'
+MIGRATIONS_DIR = 'db/migrations'
+DATABASE = 'db/blog.sqlite'
 
+namespace :app do
   namespace :db do
     desc 'Run migrations'
-    task :migrate, [:version] do |t, args|
+    task :migrate, [:version] do |_, args|
       require 'sequel/core'
       Sequel.extension :migration
       version = args[:version].to_i if args[:version]
       Sequel.connect("sqlite://#{DATABASE}") do |db|
-        Sequel::Migrator.run(db, "db/migrations", target: version)
+        Sequel::Migrator.run(db, 'db/migrations', target: version)
       end
     end
 
@@ -28,9 +30,11 @@ namespace :app do
       args.with_defaults(name: 'migration')
 
       migration_template = <<~MIGRATION
+        # frozen_string_literal: true
+
         Sequel.migration do
           change do
-            
+
           end
         end
       MIGRATION
@@ -38,9 +42,7 @@ namespace :app do
       file_name = "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{args.name}.rb"
       FileUtils.mkdir_p(MIGRATIONS_DIR)
 
-      File.open(File.join(MIGRATIONS_DIR, file_name), 'w') do |file|
-        file.write(migration_template)
-      end
+      File.write(File.join(MIGRATIONS_DIR, file_name), migration_template)
     end
   end
 end

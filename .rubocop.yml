@@ -2,8 +2,9 @@ require:
   - rubocop-sequel
   - rubocop-rake
 
-AllCops:
-  NewCops: enable
+Metrics/BlockLength:
   Exclude:
     - 'rakefile.rb'
-    - 'db/**/*.rb'
+
+AllCops:
+  NewCops: enable
