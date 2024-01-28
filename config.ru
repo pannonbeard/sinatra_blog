@@ -16,8 +16,9 @@ Dir['./app/controllers/*_controller.rb'].each do |file|
   file_base = File.basename(file, '.rb').split('_')[0]
   controller = "#{file_base.capitalize}Controller"
   next if controller == 'ApplicationController'
+  next if controller == 'HomeController'
 
   map("/#{file_base.gsub('_controller', '')}") { run Kernel.const_get(controller) }
 end
 
-map('/') { run ApplicationController }
+map('/') { run HomeController }

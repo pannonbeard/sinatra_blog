@@ -26,52 +26,48 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    index
+    return unless self.class.method_defined? :index
 
+    index
     haml :"#{root_path}/index"
   end
 
-  def index; end
-
   get '/new' do
-    new
+    return unless self.class.method_defined? :new
 
+    new
     haml :"#{root_path}/new"
   end
 
-  def new; end
-
   post '/' do
+    return unless self.class.method_defined? :create
+
     create
   end
 
-  def create; end
-
   get '/:id' do
-    show
+    return unless self.class.method_defined? :show
 
+    show
     haml :"#{root_path}/show"
   end
 
-  def show; end
-
   get '/:id/edit' do
-    edit
+    return unless self.class.method_defined? :edit
 
+    edit
     haml :"#{root_path}/edit"
   end
 
-  def edit; end
-
   post '/:id' do
+    return unless self.class.method_defined? :update
+
     update
   end
 
-  def update; end
-
   delete '/:id' do
+    return unless self.class.method_defined? :destroy
+
     destroy
   end
-
-  def destroy; end
 end
