@@ -2,11 +2,10 @@
   %head
     %meta{ content: 'Blue' }
     %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
-    %link{ href: '/style.css', rel: 'stylesheet' }
-    %link{ href: '/pico_classless.min.css', rel: 'stylesheet' }
+    %link{ href: 'assets/app.css', rel: 'stylesheet' }
   %body
     %header
       %h1 The title
     %main
       != yield
-    %script{ src: '/main.js' }
+    %script{ src: "assets/app.js" }
