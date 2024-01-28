@@ -5,6 +5,7 @@ require 'sinatra'
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sprockets'
+require 'bcrypt'
 
 require './config/db'
 
