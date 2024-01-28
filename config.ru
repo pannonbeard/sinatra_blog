@@ -7,8 +7,8 @@ map('/assets') do
   environment = Sprockets::Environment.new
 
   # append assets paths
-  environment.append_path "app/assets/stylesheets"
-  environment.append_path "app/assets/javascripts"
+  environment.append_path 'app/assets/stylesheets'
+  environment.append_path 'app/assets/javascripts'
   run environment
 end
 

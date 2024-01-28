@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 
   def root_path
-    return '' if self.instance_of?(ApplicationController)
+    return '' if instance_of?(ApplicationController)
 
     self.class.name.downcase.gsub('controller', '')
   end

@@ -7,6 +7,7 @@ gem 'puma', '~> 6.4'
 gem 'sequel', '~> 5.76'
 gem 'sinatra', '~> 4.0'
 gem 'sinatra-contrib'
+gem 'sprockets', '~> 4.2'
 
 group :development, :test do
   gem 'rake'
@@ -17,5 +18,3 @@ group :development do
   gem 'rubocop-rake'
   gem 'rubocop-sequel'
 end
-
-gem "sprockets", "~> 4.2"
