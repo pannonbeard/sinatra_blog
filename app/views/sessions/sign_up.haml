@@ -1,0 +1,17 @@
+%h1 Sign Up
+
+%form{ action: '/sessions/users/sign_up', method: 'post' }
+  .form-group
+    %label{ for: 'email' } email
+    %input{ id: 'email', name: 'email', type: 'email' }
+
+  .form-group
+    %label{ for: 'password' } password
+    %input{ id: 'password', name: 'password', type: 'password' }
+
+  .form-group
+    %label{ for: 'confirm_password' } confirm_password
+    %input{ id: 'confirm_password', name: 'confirm_password', type: 'password' }
+
+  .form-group
+    %input{ type: 'submit' }

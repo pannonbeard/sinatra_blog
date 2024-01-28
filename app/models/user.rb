@@ -1,5 +1,15 @@
 class User < Sequel::Model
+  plugin :validation_helpers
   include BCrypt
+
+  def validate
+    super
+    validates_unique(:email)
+  end
+
+  def authenticate(password_string)
+    password == password_string
+  end
 
   def password
     @password ||= Password.new(password_hash)

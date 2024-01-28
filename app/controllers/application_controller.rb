@@ -12,6 +12,15 @@ class ApplicationController < Sinatra::Base
   configure :production, :development do
     register Sinatra::Reloader
     enable :logging
+    enable :sessions
+  end
+
+  def current_user
+    if session[:user_id]
+      User.first(session[:user_id])
+    else
+      nil
+    end
   end
 
   not_found do

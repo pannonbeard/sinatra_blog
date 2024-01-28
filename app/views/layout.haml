@@ -2,10 +2,16 @@
   %head
     %meta{ content: 'Blue' }
     %meta{ name:"viewport", content:"width=device-width, initial-scale=1" }
-    %link{ href: 'assets/app.css', rel: 'stylesheet' }
+    %link{ href: '/assets/app.css', rel: 'stylesheet' }
   %body{ class: 'container' }
     %header
-      %h1 The title
+      %h1 
+        The title - Hi
     %main
+      -if current_user
+        %a{ href: '/sessions/sign_out', 'data-method': 'DELETE' } Logout
+      - else
+        %a{ href: '/sessions/users/sign_in' } Sign In
+        %a{ href: '/sessions/users/sign_up' } Sign Up
       != yield
-    %script{ src: "assets/app.js" }
+    %script{ src: "/assets/app.js" }
