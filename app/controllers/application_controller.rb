@@ -9,29 +9,14 @@ class ApplicationController < Sinatra::Base
 
   set :public_folder, File.expand_path('../../../public', __dir__)
 
- 
-
   configure :production, :development do
     register Sinatra::Reloader
     enable :logging
-
-    # initialize new sprockets environment
-    set :environment, Sprockets::Environment.new
-
-    # append assets paths
-    environment.append_path "app/assets/stylesheets"
-    environment.append_path "app/assets/javascripts"
   end
 
   not_found do
     title 'Not Found!'
     haml :not_found
-  end
-
-  # get assets
-  get "/assets/*" do
-    env["PATH_INFO"].sub!("/assets", "")
-    settings.environment.call(env)
   end
 
   def root_path

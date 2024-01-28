@@ -2,6 +2,16 @@
 
 require './config/application'
 
+map('/assets') do
+  # initialize new sprockets environment
+  environment = Sprockets::Environment.new
+
+  # append assets paths
+  environment.append_path "app/assets/stylesheets"
+  environment.append_path "app/assets/javascripts"
+  run environment
+end
+
 Dir['./app/controllers/*_controller.rb'].each do |file|
   file_base = File.basename(file, '.rb').split('_')[0]
   controller = "#{file_base.capitalize}Controller"
