@@ -9,9 +9,9 @@
         The title - Hi
     %main
       -if current_user
-        %a{ href: '/sessions/sign_out', 'data-method': 'DELETE' } Logout
+        %a{ href: '/sessions/sign_out', 'data-method': 'DELETE', class: 'btn' } Logout
       - else
-        %a{ href: '/sessions/users/sign_in' } Sign In
-        %a{ href: '/sessions/users/sign_up' } Sign Up
+        %a{ href: '/sessions/users/sign_in', class: 'btn' } Sign In
+        %a{ href: '/sessions/users/sign_up', class: 'btn' } Sign Up
       != yield
     %script{ src: "/assets/app.js" }

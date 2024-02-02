@@ -2,6 +2,10 @@
 
 # Controller For Posts
 class PostsController < ApplicationController
+  before do
+    authorize
+  end
+
   def index
     @posts = Post.all
   end
@@ -36,5 +40,15 @@ class PostsController < ApplicationController
     @post.destroy
 
     redirect '/posts'
+  end
+
+  private
+
+  def authorize
+    if !current_user
+      redirect 'sessions/users/sign_in'
+
+      return
+    end
   end
 end
