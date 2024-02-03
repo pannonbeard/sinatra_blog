@@ -1,10 +1,11 @@
-%a{href: '/posts/new', role: 'button' } New Post
+%a{href: '/posts/new',  class: 'btn' } New Post
 
 %table
   %thead
     %tr 
       %td Title
       %td Content
+      %td User
       %td Actions
   %tbody
   - @posts.each do |post|
@@ -12,7 +13,8 @@
       %td
         %a{ href: "/posts/#{post.id}" }= post.title
       %td= post.content
+      %td= post.user.email
       %td
-        %a{ href: "/posts/#{post.id}/edit", role: "button" } Edit
-        %a{ href: "/posts/#{post.id}", role: "button", "data-method": :delete } Remove
+        %a{ href: "/posts/#{post.id}/edit", class: 'btn' } Edit
+        %a{ href: "/posts/#{post.id}", class: 'btn', "data-method": :delete } Remove
 

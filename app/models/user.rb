@@ -2,6 +2,8 @@ class User < Sequel::Model
   plugin :validation_helpers
   include BCrypt
 
+  one_to_many :posts
+
   def validate
     super
     validates_unique(:email)

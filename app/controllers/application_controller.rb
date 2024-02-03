@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
 
   def current_user
     if session[:user_id]
-      User.first(session[:user_id])
+      User.first(session[:user_id]).first
     else
       nil
     end
