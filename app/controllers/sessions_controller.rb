@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   post '/users/sign_up' do
-    user = User.new(email: params[:email])
-    user.password = params[:password]
+    user = User.new(email: str_params[:email])
+    user.password = str_params[:password]
 
     if user.save
       session[:user_id] = user.id
@@ -20,12 +20,14 @@ class SessionsController < ApplicationController
   end
 
   post '/users/sign_in' do
-    user = User.first(email: params[:email])
-    if user && user.authenticate(params[:password])
+    puts str_params
+    user = User.where(email: str_params[:email]).first
+    puts user
+    if user && user.authenticate(str_params[:password])
       session[:user_id] = user.id
       redirect '/posts'
     else
-      flash[:error] = "Credentials invalid or User doesn't exist"
+      # flash[:error] = "Credentials invalid or User doesn't exist"
       redirect '/'
     end
   end

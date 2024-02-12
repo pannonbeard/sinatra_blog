@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
 
   def current_user
     if session[:user_id]
-      User.first(session[:user_id]).first
+      User.where(id: session[:user_id]).first
     else
       nil
     end
@@ -78,5 +78,11 @@ class ApplicationController < Sinatra::Base
     return unless self.class.method_defined? :destroy
 
     destroy
+  end
+
+  protected
+
+  def str_params
+    StrongParams.new(params)
   end
 end
