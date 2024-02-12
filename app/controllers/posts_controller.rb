@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.first(id: params[:id])
+    @post = Post.first(id: str_params[:id])
   end
 
   def new
@@ -19,30 +19,35 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(params[:post])
+    Post.create(post_params[:post])
 
     redirect '/posts'
   end
 
   def edit
-    @post = Post.first(id: params[:id])
+    @post = Post.first(id: str_params[:id])
   end
 
   def update
-    @post = Post.first(id: params[:id])
+    @post = Post.first(id: str_params[:id])
     @post.update(params[:post])
 
     redirect "/posts/#{@post.id}"
   end
 
   def destroy
-    @post = Post.first(id: params[:id])
+    @post = Post.first(id: str_params[:id])
     @post.destroy
 
     redirect '/posts'
   end
 
   private
+
+  def post_params
+    str_params.require(:post).permit(:user_id, :title, :content)
+  end
+  
 
   def authorize
     if !current_user
