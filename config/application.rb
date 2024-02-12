@@ -9,6 +9,10 @@ require 'bcrypt'
 
 require './config/db'
 
+Dir['./lib/**/*.rb'].sort.each do |file|
+  require file
+end
+
 Dir['./app/models/**/*.rb'].sort.each do |file|
   require file
 end
